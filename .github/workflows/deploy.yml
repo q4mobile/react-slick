@@ -20,21 +20,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          scope: '@q4'
                     
       - name: Install Client dependencies
         run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}        
-
-      - name: Setup NPM options
-        run: |
-          npm set init.author.name "Q4"
-          npm set init.author.email "alexc@q4inc.com"
-          npm config set scope q4
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: Run Publish
         run: npm publish
