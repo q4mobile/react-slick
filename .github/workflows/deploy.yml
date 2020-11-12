@@ -18,14 +18,13 @@ jobs:
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v1
         with:
+          always-auth: true
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
           scope: '@q4'
                     
       - name: Install Client dependencies
-        run: npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}        
+        run: npm install   
 
       - name: Run Publish
         run: npm publish
